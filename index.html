@@ -3,92 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wizzmie Mappaodang Makassar | Mie Pedas Viral No. 1</title>
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
-    <!-- Lucide Icons (via CDN) -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <title>Wizzmie Mappaodang Makassar - Mie Pedas Viral</title>
+    <meta name="description" content="Nikmati Mie Pedas Viral No. 1 di Makassar. Wizzmie Mappaodang, tempat nongkrong asik dengan menu Mie Disko, Udang Rambutan, dan Gelato.">
     
+    <!-- Google Fonts: Fredoka (Headings) and Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* -----------------------------------------------------------
+           1. CSS VARIABLES & RESET
+           ----------------------------------------------------------- */
         :root {
-            /* BRAND COLORS */
-            --primary-yellow: #FFD700;
-            --vibrant-red: #FF4500;
-            --neon-purple: #8A2BE2;
-            --neon-cyan: #00FFFF;
-            --dark-bg: #1a1a1a;
-            --light-grey: #f8f9fa;
-            --white: #ffffff;
+            /* Brand Colors - Primary */
+            --color-yellow: #FFD700;
+            --color-red: #FF4500;
             
-            /* DESIGN TOKENS */
-            --glass-bg: rgba(255, 255, 255, 0.85);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            --radius: 1.5rem;
+            /* Brand Colors - Secondary (Disco Theme) */
+            --color-purple: #8A2BE2;
+            --color-cyan: #00FFFF;
+            
+            /* Backgrounds & Text */
+            --bg-body: #F8F9FA;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --text-dark: #1A1A1A;
+            --text-light: #F8F9FA;
+            
+            /* Spacing & Borders */
+            --border-radius-lg: 24px;
+            --border-radius-md: 16px;
+            --container-width: 1200px;
+            
+            /* Shadows for that "Pop" effect */
+            --shadow-card: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+            --shadow-neon: 4px 4px 0px var(--color-purple);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--white);
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--bg-body);
+            color: var(--text-dark);
             overflow-x: hidden;
+            /* Retro Grid Pattern Background */
+            background-image: 
+                linear-gradient(rgba(138, 43, 226, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(138, 43, 226, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        h1, h2, h3, .brand-font {
-            font-family: 'Fredoka One', cursive;
-            letter-spacing: 1px;
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif;
+            line-height: 1.2;
         }
 
-        /* UTILITIES */
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; object-fit: cover; }
+
+        /* Utility Classes */
         .container {
-            max-width: 1200px;
+            width: 90%;
+            max-width: var(--container-width);
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
         }
 
+        .text-center { text-align: center; }
+        .text-gradient {
+            background: linear-gradient(45deg, var(--color-red), var(--color-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        /* -----------------------------------------------------------
+           2. COMPONENT STYLES
+           ----------------------------------------------------------- */
+        
+        /* Buttons */
         .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 1rem 2rem;
-            border-radius: 50px;
+            display: inline-block;
+            padding: 12px 32px;
             font-weight: 700;
-            text-decoration: none;
+            font-family: 'Fredoka', sans-serif;
+            border-radius: 50px;
             transition: all 0.3s ease;
             cursor: pointer;
-            border: none;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            border: 2px solid transparent;
         }
 
         .btn-primary {
-            background: var(--vibrant-red);
-            color: white;
-            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            background-color: var(--color-yellow);
+            color: var(--text-dark);
+            box-shadow: 4px 4px 0px var(--text-dark);
         }
 
         .btn-primary:hover {
-            transform: scale(1.05) translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px var(--color-red);
         }
 
-        /* NAVIGATION */
-        nav {
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--text-dark);
+        }
+
+        /* -----------------------------------------------------------
+           3. NAVBAR
+           ----------------------------------------------------------- */
+        .navbar {
             position: fixed;
             top: 0;
             width: 100%;
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
             z-index: 1000;
-            border-bottom: 2px solid var(--primary-yellow);
             padding: 1rem 0;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
         }
 
         .nav-content {
@@ -99,124 +142,148 @@
 
         .logo {
             font-size: 1.8rem;
-            color: var(--vibrant-red);
-            text-shadow: 2px 2px var(--primary-yellow);
+            font-weight: 700;
+            color: var(--color-red);
+            font-family: 'Fredoka', sans-serif;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
-            display: none;
+            display: flex;
             gap: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .nav-links {
-                display: flex;
-            }
+            align-items: center;
         }
 
         .nav-links a {
-            text-decoration: none;
-            color: #333;
             font-weight: 600;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--neon-purple);
-        }
-
-        /* HERO SECTION */
-        .hero {
-            padding-top: 120px;
-            padding-bottom: 60px;
-            background: radial-gradient(circle at top right, rgba(138, 43, 226, 0.05), transparent),
-                        radial-gradient(circle at bottom left, rgba(0, 255, 255, 0.05), transparent);
-            text-align: center;
             position: relative;
         }
 
-        .hero-badge-container {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--color-purple);
+            transition: width 0.3s;
         }
 
-        .badge {
-            background: var(--primary-yellow);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 800;
-            display: flex;
+        .nav-links a:hover::after { width: 100%; }
+
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* -----------------------------------------------------------
+           4. HERO SECTION
+           ----------------------------------------------------------- */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            gap: 5px;
-            box-shadow: 3px 3px 0px var(--neon-purple);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--color-cyan);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 3px 3px 0px var(--text-dark);
+            transform: rotate(-2deg);
         }
 
         .hero h1 {
-            font-size: 3rem;
-            line-height: 1.1;
-            margin-bottom: 1rem;
-            color: var(--vibrant-red);
-        }
-
-        .hero span.highlight {
-            color: var(--neon-purple);
-            display: block;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
         }
 
         .hero p {
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
+            font-size: 1.125rem;
             color: #555;
+            margin-bottom: 2rem;
+            max-width: 90%;
+            line-height: 1.6;
         }
 
-        .hero-img-placeholder {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            margin: 2rem auto;
-            background: #eee;
-            border-radius: var(--radius);
+        .hero-image-wrapper {
             position: relative;
-            overflow: hidden;
-            border: 4px solid var(--primary-yellow);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-image: url('https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=1000&auto=format&fit=crop'); /* Placeholder image */
+        }
+
+        /* Abstract shapes behind image */
+        .hero-image-wrapper::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--color-yellow);
+            border-radius: var(--border-radius-lg);
+            top: 20px;
+            left: 20px;
+            z-index: -1;
+            border: 2px solid var(--text-dark);
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 500px; /* Placeholder height */
+            background-color: #eee;
+            border-radius: var(--border-radius-lg);
+            border: 2px solid var(--text-dark);
+            background-image: url('https://images.unsplash.com/photo-1552611052-33e04de081de?q=80&w=1000&auto=format&fit=crop'); /* Placeholder: Noodles */
             background-size: cover;
             background-position: center;
         }
 
-        .hero-img-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            background: var(--vibrant-red);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 10px;
-            transform: rotate(-3deg);
-            font-family: 'Fredoka One';
+        /* Pulsing CTA */
+        .pulse-animation {
+            animation: pulse-shadow 2s infinite;
         }
 
-        /* MARQUEE REVIEWS */
-        .marquee-wrapper {
-            background: var(--dark-bg);
-            color: var(--primary-yellow);
-            padding: 1rem 0;
+        @keyframes pulse-shadow {
+            0% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 69, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0); }
+        }
+
+        /* -----------------------------------------------------------
+           5. MARQUEE (Social Proof)
+           ----------------------------------------------------------- */
+        .marquee-container {
+            background: var(--color-purple);
+            color: white;
+            padding: 15px 0;
+            transform: rotate(-1deg);
+            margin: 2rem 0;
             overflow: hidden;
             white-space: nowrap;
-            display: flex;
+            border-top: 2px solid var(--text-dark);
+            border-bottom: 2px solid var(--text-dark);
         }
 
         .marquee-content {
-            display: flex;
-            animation: marquee 30s linear infinite;
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-item {
+            display: inline-block;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            margin: 0 2rem;
         }
 
         @keyframes marquee {
@@ -224,290 +291,347 @@
             100% { transform: translateX(-50%); }
         }
 
-        .marquee-item {
-            padding: 0 2rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* -----------------------------------------------------------
+           6. MENU HIGHLIGHTS (Bento Grid)
+           ----------------------------------------------------------- */
+        .menu-section {
+            padding: 80px 0;
         }
 
-        /* MENU SECTION - BENTO GRID */
-        .section-title {
-            text-align: center;
-            margin: 4rem 0 2rem;
-            font-size: 2.5rem;
-            color: var(--neon-purple);
+        .section-header {
+            margin-bottom: 3rem;
         }
 
-        .menu-grid {
+        .bento-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(2, 300px);
             gap: 1.5rem;
-            padding-bottom: 4rem;
         }
 
         .menu-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s ease;
-            position: relative;
+            background: white;
+            border-radius: var(--border-radius-md);
             overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
         .menu-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
+            border-color: var(--color-purple);
+            box-shadow: var(--shadow-neon);
         }
 
-        .menu-card img {
+        /* Specific Grid Placements */
+        .card-1 { grid-column: span 8; background: #ffebeb; } /* Large Item */
+        .card-2 { grid-column: span 4; background: #e0f7fa; } /* Tall/Square Item */
+        .card-3 { grid-column: span 4; background: #fff8e1; }
+        .card-4 { grid-column: span 8; background: #f3e5f5; }
+
+        .card-img {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 1rem;
+            z-index: 1;
+            transition: transform 0.5s ease;
         }
 
-        .menu-card h3 {
+        .menu-card:hover .card-img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
             margin-bottom: 0.5rem;
-            color: var(--vibrant-red);
         }
 
-        .price-tag {
-            background: var(--neon-cyan);
-            color: var(--dark-bg);
-            padding: 2px 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        /* SOCIAL PROOF */
-        .stats-section {
-            background: var(--primary-yellow);
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-        }
-
-        .stat-item h2 {
-            font-size: 3rem;
-            color: var(--vibrant-red);
-        }
-
-        .stat-item p {
+        .card-price {
             font-weight: 700;
-            color: var(--neon-purple);
+            color: var(--color-red);
         }
 
-        /* LOCATION & FOOTER */
-        .location {
-            padding: 4rem 0;
-            background: var(--light-grey);
+        /* -----------------------------------------------------------
+           7. REVIEWS & LOCATION
+           ----------------------------------------------------------- */
+        .reviews-section {
+            background: var(--text-dark);
+            color: white;
+            padding: 80px 0;
+            position: relative;
         }
 
-        .map-placeholder {
+        .review-card {
+            background: #2a2a2a;
+            padding: 2rem;
+            border-radius: var(--border-radius-md);
+            border-left: 5px solid var(--color-yellow);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .stars { color: var(--color-yellow); margin-bottom: 1rem; }
+
+        .location-section {
+            padding: 80px 0;
+        }
+
+        .map-container {
             width: 100%;
             height: 400px;
-            background: #ddd;
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #999;
-            margin-bottom: 2rem;
+            border-radius: var(--border-radius-md);
+            overflow: hidden;
+            border: 2px solid var(--text-dark);
+            box-shadow: var(--shadow-card);
         }
 
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
+        /* -----------------------------------------------------------
+           8. RESPONSIVE QUERIES
+           ----------------------------------------------------------- */
+        @media (max-width: 992px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-badge { margin: 0 auto 1.5rem auto; }
+            .hero p { margin: 0 auto 2rem auto; }
+            .bento-grid { display: flex; flex-direction: column; height: auto; }
+            .menu-card { height: 300px; }
+            .hero h1 { font-size: 2.5rem; }
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: 0.3s;
-        }
-
-        .social-icon:hover {
-            background: var(--neon-purple);
-            color: var(--neon-cyan);
-        }
-
-        /* ANIMATIONS */
-        .pulse {
-            animation: pulse-animation 2s infinite;
-        }
-
-        @keyframes pulse-animation {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+                transform: translateY(-150%);
+                transition: transform 0.3s ease;
+            }
+            .nav-links.active { transform: translateY(0); }
+            .mobile-toggle { display: block; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
         <div class="container nav-content">
-            <div class="logo brand-font">WIZZMIE</div>
-            <div class="nav-links">
-                <a href="#hero">Home</a>
-                <a href="#menu">Menu</a>
-                <a href="#reviews">Reviews</a>
-                <a href="#lokasi">Lokasi</a>
+            <a href="#" class="logo">WIZZMIE<span style="color:var(--color-yellow)">.</span></a>
+            
+            <div class="mobile-toggle" onclick="toggleMenu()">
+                ☰
             </div>
-            <a href="https://gofood.link" class="btn btn-primary btn-sm">Order Online</a>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#home">Home</a>
+                <a href="#menu">Menu Disko</a>
+                <a href="#reviews">Kata Mereka</a>
+                <a href="#location">Lokasi</a>
+                <a href="#" class="btn btn-primary" style="padding: 8px 20px;">Order Online</a>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
-        <div class="container">
-            <div class="hero-badge-container">
-                <div class="badge"><i data-lucide="star" style="fill: currentColor; width:16px;"></i> 4.9 Rating</div>
-                <div class="badge">#1 Viral di Makassar</div>
-                <div class="badge">Halal MUI</div>
-                <div class="badge">Start 10k</div>
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <div class="hero-badge">
+                    <span>🔥</span> Viral No. 1 di Makassar
+                </div>
+                <h1>Are you ready to see <span class="text-gradient">Mie Dancing?</span></h1>
+                <p>Nikmati sensasi Mie Disko & Dimsum lezat di Jl. Andi Mappaodang. Tempat nongkrong industrial vibes dengan harga yang ramah di kantong pelajar!</p>
+                
+                <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center; @media(min-width: 992px){justify-content: flex-start;}">
+                    <a href="#location" class="btn btn-primary pulse-animation">Goyang Lidah Sekarang</a>
+                    <div style="font-weight: 600; font-size: 0.9rem; display: flex; gap: 5px;">
+                        <span>⭐ 4.9 Rating</span> | <span>✅ Halal</span> | <span>💰 Start 10k</span>
+                    </div>
+                </div>
             </div>
-            <h1>Mie Pedas Viral No. 1 <span class="highlight">di Makassar!</span></h1>
-            <p>Are you ready to see mie dancing? Nikmati sensasi Mie Disko & Dimsum lezat di Jl. Andi Mappaodang dengan suasana Retro Disco yang seru!</p>
-            
-            <a href="#menu" class="btn btn-primary pulse">Lihat Menu Sekarang</a>
 
-            <div class="hero-img-placeholder">
-                <div class="hero-img-overlay">Eat. Mie. Repeat.</div>
+            <div class="hero-image-wrapper">
+                <!-- Using a high-quality Unsplash image representing Asian Noodles as placeholder -->
+                <div class="hero-img" style="background-image: url('https://images.unsplash.com/photo-1585032226651-759b368d7246?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=80');" title="Mie Pedas Wizzmie"></div>
             </div>
         </div>
     </section>
 
-    <!-- Review Marquee -->
-    <div class="marquee-wrapper" id="reviews">
+    <!-- MARQUEE (INFINITE SCROLL) -->
+    <div class="marquee-container">
         <div class="marquee-content">
-            <!-- Repeated for continuous effect -->
-            <div class="marquee-item"><i data-lucide="star"></i> 4.9/5.0 Stars (8,004 Reviews)</div>
-            <div class="marquee-item"><i data-lucide="check-circle"></i> Best Viral Noodle Shop</div>
-            <div class="marquee-item"><i data-lucide="thumbs-up"></i> "Best service & price!"</div>
-            <div class="marquee-item"><i data-lucide="music"></i> Retro Disco Vibe 80s</div>
-            <div class="marquee-item"><i data-lucide="star"></i> 4.9/5.0 Stars (8,004 Reviews)</div>
-            <div class="marquee-item"><i data-lucide="check-circle"></i> Best Viral Noodle Shop</div>
-            <div class="marquee-item"><i data-lucide="thumbs-up"></i> "Best service & price!"</div>
-            <div class="marquee-item"><i data-lucide="music"></i> Retro Disco Vibe 80s</div>
+            <span class="marquee-item">★ 8,004+ Review Positif</span>
+            <span class="marquee-item">★ Buka Setiap Hari Sampai 22.00</span>
+            <span class="marquee-item">★ Eat Mie Repeat</span>
+            <span class="marquee-item">★ Mie Pedas Viral</span>
+            <span class="marquee-item">★ Wizzmie Mappaodang</span>
+            <!-- Duplicate for loop -->
+            <span class="marquee-item">★ 8,004+ Review Positif</span>
+            <span class="marquee-item">★ Buka Setiap Hari Sampai 22.00</span>
+            <span class="marquee-item">★ Eat Mie Repeat</span>
         </div>
     </div>
 
-    <!-- Menu Section -->
-    <section class="container" id="menu">
-        <h2 class="section-title">Favorit Wizz-Lovers!</h2>
-        <div class="menu-grid">
-            <!-- Card 1 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?w=500&auto=format&fit=crop" alt="Mie Disko">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Mie Disko</h3>
-                    <span class="price-tag">Rp 12k</span>
-                </div>
-                <p>Sensasi gurih pedas level 1-5 yang bikin lidah bergoyang!</p>
+    <!-- MENU GRID (BENTO STYLE) -->
+    <section id="menu" class="menu-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 style="font-size: 2.5rem; margin-bottom: 0.5rem;">Menu <span style="color:var(--color-purple)">Hits</span></h2>
+                <p>Pilihan favorit Wizzmie Lovers</p>
             </div>
-            <!-- Card 2 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1541696490-8744a5db7f7c?w=500&auto=format&fit=crop" alt="Udang Rambutan">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Udang Rambutan</h3>
-                    <span class="price-tag">Best Seller</span>
-                </div>
-                <p>Dimsum crispy di luar, juicy udang di dalam. Wajib coba!</p>
+
+            <div class="bento-grid">
+                <!-- Card 1: Mie Disko -->
+                <article class="menu-card card-1">
+                    <img src="https://images.unsplash.com/photo-1544025162-d76690b67f11?auto=format&fit=crop&w=800&q=80" alt="Mie Disko" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Mie Disko (Gurih Pedas)</h3>
+                        <p style="margin-bottom: 10px; font-size: 0.9rem;">Sensasi pedas nendang level 1-5 dengan bumbu rahasia yang bikin goyang.</p>
+                        <span class="card-price">Start Rp 11.000</span>
+                    </div>
+                </article>
+
+                <!-- Card 2: Es DJ -->
+                <article class="menu-card card-2">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=600&q=80" alt="Es DJ" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Es DJ</h3>
+                        <p style="margin-bottom: 10px; font-size: 0.9rem;">Seger banget! Penetral pedas terbaik.</p>
+                        <span class="card-price">Rp 9.000</span>
+                    </div>
+                </article>
+
+                <!-- Card 3: Udang Rambutan -->
+                <article class="menu-card card-3">
+                    <img src="https://images.unsplash.com/photo-1626020188686-74c10a1744d0?auto=format&fit=crop&w=600&q=80" alt="Udang Rambutan" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Udang Rambutan</h3>
+                        <p style="margin-bottom: 10px; font-size: 0.9rem;">Best Seller! Crispy di luar, juicy di dalam.</p>
+                        <span class="card-price">Rp 12.000</span>
+                    </div>
+                </article>
+
+                <!-- Card 4: Gelato -->
+                <article class="menu-card card-4">
+                    <img src="https://images.unsplash.com/photo-1560008581-09826d1de69e?auto=format&fit=crop&w=800&q=80" alt="Gelato" class="card-img">
+                    <div class="card-content">
+                        <h3 class="card-title">Gelato Series</h3>
+                        <p style="margin-bottom: 10px; font-size: 0.9rem;">Penutup manis yang sempurna.</p>
+                        <span class="card-price">Start Rp 15.000</span>
+                    </div>
+                </article>
             </div>
-            <!-- Card 3 -->
-            <div class="menu-card">
-                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop" alt="Es DJ">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <h3>Es DJ</h3>
-                    <span class="price-tag">Fresh</span>
-                </div>
-                <p>Minuman seger racikan spesial buat netralin pedasnya Mie Disko!</p>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="#" class="btn btn-outline">Lihat Menu Lengkap →</a>
             </div>
         </div>
     </section>
 
-    <!-- Stats Counter -->
-    <section class="stats-section">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h2 id="count-reviews">8,004</h2>
-                    <p>Ulasan Google</p>
-                </div>
-                <div class="stat-item">
-                    <h2>4.9</h2>
-                    <p>Rating Sempurna</p>
-                </div>
-                <div class="stat-item">
-                    <h2>10 PM</h2>
-                    <p>Buka Setiap Hari</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location -->
-    <section class="location" id="lokasi">
-        <div class="container">
-            <h2 class="section-title">Mampir ke Mappaodang!</h2>
-            <div class="map-placeholder">
-                <div style="text-align: center; padding: 1rem;">
-                    <i data-lucide="map-pin" size="48" color="#FF4500"></i>
-                    <p style="margin-top: 1rem;"><strong>Jl. Andi Mappaodang No.39</strong><br>Bongaya, Kec. Tamalate, Kota Makassar</p>
-                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary" style="margin-top: 1rem;">Buka Google Maps</a>
+    <!-- REVIEWS SECTION -->
+    <section id="reviews" class="reviews-section">
+        <div class="container text-center">
+            <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Apa Kata Mereka?</h2>
+            
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <h3 style="font-style: italic; font-weight: 400; margin-bottom: 1.5rem; font-family: 'Inter', sans-serif;">
+                    "The service and food is good. Best place with affordable price. Suasananya asik banget buat nongkrong bareng temen!"
+                </h3>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                    <div style="width: 40px; height: 40px; background: #555; border-radius: 50%;"></div>
+                    <div style="text-align: left;">
+                        <p style="font-weight: 700;">Local Guide</p>
+                        <p style="font-size: 0.8rem; color: #aaa;">8,000+ Happy Customers</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- LOCATION & FOOTER -->
+    <section id="location" class="location-section">
         <div class="container">
-            <div class="logo brand-font" style="margin-bottom: 1rem;">WIZZMIE</div>
-            <p>"Are you ready to see mie dancing?"</p>
-            <div class="social-links">
-                <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
-                <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
-                <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+            <div class="section-header text-center">
+                <h2>Lokasi Kami</h2>
+                <p>Jl. Andi Mappaodang No.39, Bongaya, Makassar</p>
             </div>
-            <p style="font-size: 0.8rem; opacity: 0.7;">&copy; 2023 Wizzmie Mappaodang Makassar. All Rights Reserved.</p>
-        </div>
-    </footer>
 
+            <div class="map-container">
+                <!-- Embedded Google Map Placeholder - Points to general Makassar area near coordinates -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.5786487190566!2d119.41687407590821!3d-5.171302552220448!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee29111111111%3A0x1234567890!2sJl.%20Andi%20Mappaodang%2C%20Makassar!5e0!3m2!1sen!2sid!4v1709123456789!5m2!1sen!2sid" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #ddd;">
+                <p style="font-weight: 600;">Wizzmie Mappaodang Makassar</p>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Open Daily: 10.00 AM - 10.00 PM</p>
+                <p style="font-size: 0.8rem; color: #888; margin-top: 20px;">&copy; 2024 Wizzmie Mappaodang. All rights reserved.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- JAVASCRIPT -->
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
-        // Simple Reveal Animation on Scroll
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Sticky Navbar Effect on Scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = "rgba(255, 255, 255, 0.95)";
+                navbar.style.boxShadow = "0 4px 6px rgba(0,0,0,0.05)";
+                navbar.style.padding = "0.5rem 0";
+            } else {
+                navbar.style.background = "rgba(255, 255, 255, 0.8)";
+                navbar.style.boxShadow = "none";
+                navbar.style.padding = "1rem 0";
+            }
+        });
+
+        // Simple Intersection Observer for Fade-in effects
         const observerOptions = {
             threshold: 0.1
         };
@@ -515,29 +639,19 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.menu-card').forEach(card => {
-            card.style.opacity = "0";
-            card.style.transform = "translateY(20px)";
-            card.style.transition = "all 0.6s ease-out";
+        // Select elements to animate
+        const cards = document.querySelectorAll('.menu-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = `all 0.5s ease ${index * 0.1}s`; // Staggered delay
             observer.observe(card);
-        });
-
-        // Sticky Navbar effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-                nav.style.padding = '0.5rem 0';
-            } else {
-                nav.style.boxShadow = 'none';
-                nav.style.padding = '1rem 0';
-            }
         });
     </script>
 </body>
